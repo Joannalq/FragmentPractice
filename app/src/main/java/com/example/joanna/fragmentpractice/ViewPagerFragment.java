@@ -9,10 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 public class ViewPagerFragment extends Fragment {
     public static final String KEY_INDEX="recipt index";
+   // public static final String KEY_IS_INGREDIENTS="KEY_IS_INGREDINET";
 
     @Nullable
     @Override
@@ -21,11 +21,16 @@ public class ViewPagerFragment extends Fragment {
        // Toast.makeText(getActivity(),Recipes.names[index],Toast.LENGTH_SHORT).show();
         getActivity().setTitle(Recipes.names[index]);
         View view=inflater.inflate(R.layout.fragment_viewpage,container,false);
-        final IngredientsFragment ingredientsFragment=new IngredientsFragment();
+        final IngredientFragment ingredientsFragment=new IngredientFragment();
         Bundle bundle=new Bundle();
         bundle.putInt(KEY_INDEX,index);
+       // bundle.putBoolean(KEY_IS_INGREDIENTS,true);
         ingredientsFragment.setArguments(bundle);
         final DirectionsFragment directionsFragment=new DirectionsFragment();
+        Bundle bundleD=new Bundle();
+        bundle.putInt(KEY_INDEX,index);
+     //   bundle.putBoolean(KEY_IS_INGREDIENTS,false);
+        directionsFragment.setArguments(bundleD);
 
         ViewPager viewPager= (ViewPager) view.findViewById(R.id.viewPage);
         viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
